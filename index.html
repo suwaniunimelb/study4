@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>Swipe to Begin</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+      color: white;
+    }
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      pointer-events: none;
+    }
+    .message {
+      position: absolute;
+      bottom: 60px;
+      font-size: 20px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/0h20kcu98erm0y1nj3tw1/ttfep5.mp4?rlkey=3qhn9wiak2q9xd4skfrnu9j4k" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="overlay">
+    <div class="message">⬆️ Swipe up to begin</div>
+  </div>
+
+  <script>
+    let startY = 0;
+    document.addEventListener('touchstart', e => {
+      startY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchend', e => {
+      const endY = e.changedTouches[0].clientY;
+      if (startY - endY > 60) {
+        window.location.href = "https://q.surveys.unimelb.edu.au/jfe/form/SV_55ukdm9tjAq6R26";
+      }
+    });
+  </script>
+</body>
+</html>
